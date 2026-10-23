@@ -6,14 +6,6 @@ class NeuralNetwork(nn.Module):
  
     def __init__(self, input_size, num_classes, list_hidden,
                  activation='relu', dropout=0.0):
-        """MLP classifier.
- 
-        input_size   -- number of input features (512 for your histograms)
-        num_classes  -- number of classes (30)
-        list_hidden  -- hidden layer sizes, e.g. [256, 128]
-        activation   -- 'sigmoid', 'tanh' or 'relu'
-        dropout      -- dropout probability after each hidden activation
-        """
         super().__init__()
         self.input_size = input_size
         self.num_classes = num_classes
@@ -50,7 +42,6 @@ class NeuralNetwork(nn.Module):
         return nn.Sigmoid()
  
     def forward(self, x, verbose=False):
-        """Returns (logits, probabilities). Use the LOGITS with CrossEntropyLoss."""
         x = x.float()
         for i in range(len(self.layers) - 1):
             x = self.layers[i](x)
